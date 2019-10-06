@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SnakeForms.GameLogic;
+using SnakeForms.Logging;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,10 +16,25 @@ namespace SnakeForms
     /// </summary>
     public partial class App : Application
     {
+        public IServiceProvider ServiceProvider { get; private set; }
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            MainWindow mw = new MainWindow();
-            mw.Show();
+            var serviceCollection = new ServiceCollection();
+            ConfigureServices(serviceCollection);
+
+            ServiceProvider = serviceCollection.BuildServiceProvider();
+
+            var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
+            mainWindow.Show();
+        }
+
+        private void ConfigureServices(ServiceCollection services)
+        {
+            services.AddSingleton<IGame, Game>();
+            services.AddSingleton<ILogger, Logger>();
+
+            services.AddTransient<MainWindow>();
         }
     }
 }

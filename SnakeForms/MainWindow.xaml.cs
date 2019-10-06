@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SnakeForms.GameLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace SnakeForms
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly IGame game;
+
+        public MainWindow(IGame game)
         {
             InitializeComponent();
+            this.game = game;
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -34,6 +38,12 @@ namespace SnakeForms
         {
             if (e.ChangedButton == MouseButton.Left)
                 DragMove();
+        }
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            game.Start();
         }
     }
 }

@@ -85,7 +85,7 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" HorizontalAlignment="Center"  Style="{StaticResource fontStyle}">Snake Forms</Label>
-        <Button Grid.Row="1" Name="StartButton" Style="{StaticResource StartButton}">Start</Button>
+        <Button Grid.Row="1" Name="StartButton" Style="{StaticResource StartButton}" Click="StartButton_Click">Start</Button>
         <Button Grid.Row="2" Name="ExitButton" Style="{StaticResource ExitButton}" Click="ExitButton_Click">Exit</Button>
     </Grid>
 </Window>
