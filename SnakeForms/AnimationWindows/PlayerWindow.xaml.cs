@@ -33,7 +33,7 @@ namespace SnakeForms.AnimationWindows
             Show();
         }
 
-        private void Moove(Window w)
+        private async void Moove(Window w)
         {
             double a = 0;
 
@@ -41,13 +41,13 @@ namespace SnakeForms.AnimationWindows
             {
                 w.Dispatcher.Invoke((Action)(() =>
                 {
-                    w.Left = ((System.Windows.SystemParameters.PrimaryScreenWidth - w.Width) / 2) + Math.Cos(a) * 200;
-                    w.Top = ((System.Windows.SystemParameters.PrimaryScreenHeight - w.Height) / 2) + Math.Sin(a) * 200;
+                    w.Left = (w.Left + w.Width) % 1920;
+                    w.Top = 0;
 
                 }));
 
-                a += 0.001;
-                Task.Delay(200);
+                a += 0.1;
+                await Task.Delay(500);
             }
         }
     }
