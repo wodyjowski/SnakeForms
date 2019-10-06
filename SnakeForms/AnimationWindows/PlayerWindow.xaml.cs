@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SnakeForms.GameLogic;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -19,6 +20,9 @@ namespace SnakeForms.AnimationWindows
     /// </summary>
     public partial class PlayerWindow : Window, IPlayerWindow
     {
+        private Directions direction;
+        private readonly double distance = 50;
+
         public PlayerWindow()
         {
             InitializeComponent();
@@ -27,6 +31,7 @@ namespace SnakeForms.AnimationWindows
         public void Start()
         {
             Topmost = true;
+            direction = Directions.Right;
 
             Task drawingTask = new Task(() => Moove(this));
             drawingTask.Start();
@@ -35,20 +40,71 @@ namespace SnakeForms.AnimationWindows
 
         private async void Moove(Window w)
         {
-            double a = 0;
+            double left = 0;
+            double top = 0;
 
             while (true)
             {
                 w.Dispatcher.Invoke((Action)(() =>
                 {
-                    w.Left = (w.Left + w.Width) % 1920;
-                    w.Top = 0;
+                    Left = CalculateLeft(Left);
+                    Top = CalculateTop(Top);
+
+                    //w.Left = left;
+                    //w.Top = top;
 
                 }));
 
-                a += 0.1;
                 await Task.Delay(500);
             }
+        }
+
+        private double CalculateLeft(double left)
+        {
+            switch(direction)
+            {
+                case Directions.Right:
+                    return left + distance;
+                case Directions.Left:
+                    return left - distance;
+            }
+
+            return left;
+        }
+
+        private double CalculateTop(double top)
+        {
+            switch (direction)
+            {
+                case Directions.Up:
+                    return top - distance;
+                case Directions.Down:
+                    return top + distance;
+            }
+
+            return top;
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch(e.Key)
+            {
+                case Key.Up:
+                    direction = Directions.Up;
+                    break;
+                case Key.Down:
+                    direction = Directions.Down;
+                    break;
+                case Key.Left:
+                    direction = Directions.Left;
+                    break;
+                case Key.Right:
+                    direction = Directions.Right;
+                    break;
+            }
+
+            Left = CalculateLeft(Left);
+            Top = CalculateTop(Top);
         }
     }
 }
