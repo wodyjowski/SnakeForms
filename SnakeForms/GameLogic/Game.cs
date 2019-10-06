@@ -1,4 +1,5 @@
-﻿using SnakeForms.Logging;
+﻿using SnakeForms.AnimationWindows;
+using SnakeForms.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,33 +11,18 @@ namespace SnakeForms.GameLogic
     public class Game : IGame
     {
         private readonly ILogger logger;
-        private readonly IPlayer player;
+        private readonly IPlayerWindow playerW;
 
-        public Game(ILogger logger, IPlayer player)
+        public Game(ILogger logger, IPlayerWindow playerW)
         {
             this.logger = logger;
-            this.player = player;
+            this.playerW = playerW;
         }
         public void Start()
         {
             logger.Log("Game has started");
-            CreatPlayer();
-            CreateGameTimer();
+            playerW.Start();
         }
 
-        private void CreatPlayer()
-        {
-            player.CreatePlayer();
-        }
-
-        private void CreateGameTimer()
-        {
-            Timer timer = new Timer(new TimerCallback(TimeEvent), 0, 500, 500);
-        }
-
-        private void TimeEvent(object state)
-        {
-            logger.Log("Game tick");
-        }
     }
 }

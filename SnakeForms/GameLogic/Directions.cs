@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SnakeForms.GameLogic
 {
-    enum Directions
+    public enum Directions
     {
         Left,
         Right,

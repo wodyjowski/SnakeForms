@@ -35,7 +35,7 @@ namespace SnakeForms
             services.AddSingleton<IGame, Game>();
             services.AddSingleton<ILogger, Logger>();
             services.AddSingleton<IWindowCreator, WindowCreator>();
-            services.AddSingleton<IPlayer, Player>();
+            services.AddSingleton<IPlayerWindow, PlayerWindow>();
 
             services.AddTransient<MainWindow>();
         }
