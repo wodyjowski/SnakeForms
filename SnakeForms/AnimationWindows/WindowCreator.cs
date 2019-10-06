@@ -15,7 +15,7 @@ namespace SnakeForms.AnimationWindows
             this.logger = logger;
         }
 
-        public Window ObtainWindow(WindowType wType)
+        public Window CreateWindow(WindowType wType)
         {
             logger.Log("Creating Window...");
 

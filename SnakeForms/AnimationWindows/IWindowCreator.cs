@@ -7,6 +7,6 @@ namespace SnakeForms.AnimationWindows
 {
     public interface IWindowCreator
     {
-        public Window ObtainWindow(WindowType wType);
+        public Window CreateWindow(WindowType wType);
     }
 }

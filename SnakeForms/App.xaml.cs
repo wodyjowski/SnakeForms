@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SnakeForms.AnimationWindows;
 using SnakeForms.GameLogic;
 using SnakeForms.Logging;
 using System;
@@ -33,6 +34,8 @@ namespace SnakeForms
         {
             services.AddSingleton<IGame, Game>();
             services.AddSingleton<ILogger, Logger>();
+            services.AddSingleton<IWindowCreator, WindowCreator>();
+            services.AddSingleton<IPlayer, Player>();
 
             services.AddTransient<MainWindow>();
         }
