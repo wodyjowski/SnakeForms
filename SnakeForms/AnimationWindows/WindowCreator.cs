@@ -8,9 +8,9 @@ namespace SnakeForms.AnimationWindows
 {
     public class WindowCreator : IWindowCreator
     {
-        private readonly ILogger logger;
+        private readonly ILoger logger;
 
-        public WindowCreator(ILogger logger)
+        public WindowCreator(ILoger logger)
         {
             this.logger = logger;
         }

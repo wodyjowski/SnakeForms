@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SnakeForms.Logging
 {
-    public interface ILogger
+    public interface ILoger
     {
         public void Log(string content);
     }

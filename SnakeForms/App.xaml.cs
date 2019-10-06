@@ -33,7 +33,7 @@ namespace SnakeForms
         private void ConfigureServices(ServiceCollection services)
         {
             services.AddSingleton<IGame, Game>();
-            services.AddSingleton<ILogger, Logger>();
+            services.AddSingleton<ILoger, Loger>();
             services.AddSingleton<IWindowCreator, WindowCreator>();
             services.AddSingleton<IPlayerWindow, PlayerWindow>();
 
